@@ -95,10 +95,21 @@ export default function Home({ products }) {
 }
 
 export async function getStaticProps() {
-  const res = await fetch('https://fakestoreapi.com/products');
-  const products = await res.json();
-  return {
-    props: { products },
-    revalidate:60,
-  };
+  try {
+    const res = await fetch('https://fakestoreapi.com/products', {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    const products = await res.json();
+    return {
+      props: { products },
+      revalidate: 60,
+    };
+  } catch (error) {
+    return {
+      props: { products: [] },
+      revalidate: 60,
+    };
+  }
 }
