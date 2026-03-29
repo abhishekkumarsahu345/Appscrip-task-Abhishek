@@ -1,15 +1,12 @@
-import Image from 'next/image';
 import styles from '../styles/Home.module.css';
 
 export default function ProductCard({ product, isWishlisted, onWishlistToggle }) {
   return (
     <div className={styles.card}>
       <div className={styles.imageWrapper}>
-        <Image
+        <img
           src={product.image}
           alt={product.title}
-          width={300}
-          height={300}
           className={styles.productImage}
         />
         <button
